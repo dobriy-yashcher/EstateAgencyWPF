@@ -16,9 +16,9 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="34*"/>
-            <RowDefinition Height="77*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">

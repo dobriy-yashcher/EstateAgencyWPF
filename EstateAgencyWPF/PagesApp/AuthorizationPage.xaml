@@ -1,4 +1,5 @@
 ﻿<Page x:Class="EstateAgencyWPF.PagesApp.AuthorizationPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -22,8 +23,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
+
             <TextBlock Text="Login"/>
-            <TextBox x:Name="tbLogin"/>
+            <TextBox x:Name="tbLogin" />
 
             <TextBlock Text="Password"/>
             <PasswordBox x:Name="tbPassword"/>
