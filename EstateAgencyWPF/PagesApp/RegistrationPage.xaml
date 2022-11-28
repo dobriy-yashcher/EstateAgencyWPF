@@ -1,0 +1,49 @@
+﻿<Page x:Class="EstateAgencyWPF.PagesApp.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EstateAgencyWPF.PagesApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegistrationPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="39*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="Name"/>
+            <TextBox x:Name="tbName"/>
+
+            <TextBlock Text="Login"/>
+            <TextBox x:Name="tbLogin"/>
+
+            <TextBlock Text="Password"/>
+            <PasswordBox x:Name="tbPassword"/>
+
+            <TextBlock Text="Repeat Password"/>
+            <PasswordBox x:Name="tbRepeatPassword"/>
+
+            <TextBlock Text="Select role"/>
+            <ComboBox x:Name="cbRole">
+                <ComboBoxItem Content="Admin"/>
+                <ComboBoxItem Content="Client"/>
+            </ComboBox>
+
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Reverse" Click="ReverseButton_Click" Margin="5"/>
+                <Button Content="Registration" Click="RegistrationButton_Click" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
