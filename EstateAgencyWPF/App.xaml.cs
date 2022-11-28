@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EstateAgencyWPF.ADOApp;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace EstateAgencyWPF
     /// </summary>
     public partial class App : Application
     {
+        public static EstateAgencyEntities Connection = new EstateAgencyEntities();
     }
 }
