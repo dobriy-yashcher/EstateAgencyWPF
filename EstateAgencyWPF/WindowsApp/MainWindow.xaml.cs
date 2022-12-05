@@ -1,5 +1,6 @@
 ﻿using EstateAgencyWPF.PagesApp;
 using System.Windows;
+using System.Windows.Input;
 
 namespace EstateAgencyWPF
 {
@@ -11,7 +12,13 @@ namespace EstateAgencyWPF
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new AuthorizationPage());
+            //MainFrame.NavigationService.Navigate(new AuthorizationPage());
+        }
+
+        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }
