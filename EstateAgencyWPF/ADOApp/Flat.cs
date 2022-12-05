@@ -14,15 +14,24 @@ namespace EstateAgencyWPF.ADOApp
     
     public partial class Flat
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Flat()
+        {
+            this.FlatBase = new HashSet<FlatBase>();
+            this.ImageFlat = new HashSet<ImageFlat>();
+        }
+    
         public int IdFlat { get; set; }
         public int Owner { get; set; }
-        public int CountRoom { get; set; }
-        public decimal FloorSpace { get; set; }
-        public int Floor { get; set; }
-        public int SleepingRooms { get; set; }
-        public int Bathrooms { get; set; }
-        public bool Internet { get; set; }
-        public bool TV { get; set; }
-        public bool Available { get; set; }
+        public int FlatInformation { get; set; }
+        public int Address { get; set; }
+    
+        public virtual Address Address1 { get; set; }
+        public virtual Owner Owner1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlatBase> FlatBase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ImageFlat> ImageFlat { get; set; }
+        public virtual FlatInformation FlatInformation1 { get; set; }
     }
 }

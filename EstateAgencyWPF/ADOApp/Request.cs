@@ -12,23 +12,29 @@ namespace EstateAgencyWPF.ADOApp
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Request
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Request()
         {
-            this.Authorization = new HashSet<Authorization>();
-            this.UserFlatBase = new HashSet<UserFlatBase>();
+            this.Image = new HashSet<Image>();
             this.UserRequest = new HashSet<UserRequest>();
         }
     
-        public int IdUser { get; set; }
+        public int IdRequest { get; set; }
+        public int FlatType { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string Address { get; set; }
+        public string Space { get; set; }
         public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
     
+        public virtual FlatType FlatType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Authorization> Authorization { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserFlatBase> UserFlatBase { get; set; }
+        public virtual ICollection<Image> Image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRequest> UserRequest { get; set; }
     }

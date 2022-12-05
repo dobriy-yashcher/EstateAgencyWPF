@@ -14,7 +14,34 @@ namespace EstateAgencyWPF.ADOApp
     
     public partial class FlatInformation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FlatInformation()
+        {
+            this.Flat = new HashSet<Flat>();
+        }
+    
         public int IdFlatInformation { get; set; }
-        public byte[] FlatLayout { get; set; }
+        public int FloorSpace { get; set; }
+        public int RoomCount { get; set; }
+        public int Floor { get; set; }
+        public int CountFloorsInHouse { get; set; }
+        public string FlatDescription { get; set; }
+        public Nullable<bool> WithTechnics { get; set; }
+        public Nullable<bool> WithFurniture { get; set; }
+        public Nullable<int> Overlaps { get; set; }
+        public Nullable<int> WallMaterial { get; set; }
+        public Nullable<int> Windows { get; set; }
+        public Nullable<bool> ChildrenPlayground { get; set; }
+        public Nullable<bool> KitchenSet { get; set; }
+        public Nullable<int> Terrace { get; set; }
+        public Nullable<int> Heating { get; set; }
+        public Nullable<int> KitchenSpace { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Flat> Flat { get; set; }
+        public virtual Heating Heating1 { get; set; }
+        public virtual Material Material { get; set; }
+        public virtual Material Material1 { get; set; }
+        public virtual Material Material2 { get; set; }
     }
 }

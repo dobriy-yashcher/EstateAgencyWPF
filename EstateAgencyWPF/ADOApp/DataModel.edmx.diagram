@@ -4,17 +4,45 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4520797e3ddd454496b5d4560bfd647b" Name="Diagram1">
+      <Diagram DiagramId="4520797e3ddd454496b5d4560bfd647b" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="EstateAgencyModel.Authorization" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EstateAgencyModel.Flat" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EstateAgencyModel.FlatInformation" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EstateAgencyModel.Owner" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EstateAgencyModel.Region" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EstateAgencyModel.Role" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="EstateAgencyModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EstateAgencyModel.User" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="EstateAgencyModel.FK_Authorization_User" ManuallyRouted="false" />
-        <AssociationConnector Association="EstateAgencyModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EstateAgencyModel.Address" Width="1.5" PointX="1" PointY="15.125" />
+        <EntityTypeShape EntityType="EstateAgencyModel.City" Width="1.5" PointX="1" PointY="18.5" />
+        <EntityTypeShape EntityType="EstateAgencyModel.FlatBase" Width="1.5" PointX="9.875" PointY="6.625" />
+        <EntityTypeShape EntityType="EstateAgencyModel.FlatType" Width="1.5" PointX="7.625" PointY="10.5" />
+        <EntityTypeShape EntityType="EstateAgencyModel.Heating" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="EstateAgencyModel.Image" Width="1.5" PointX="12.125" PointY="16.625" />
+        <EntityTypeShape EntityType="EstateAgencyModel.ImageFlat" Width="1.5" PointX="14.375" PointY="10.125" />
+        <EntityTypeShape EntityType="EstateAgencyModel.Material" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="EstateAgencyModel.Request" Width="1.5" PointX="9.875" PointY="13.125" />
+        <EntityTypeShape EntityType="EstateAgencyModel.UserFlatBase" Width="1.5" PointX="12.125" PointY="4.125" />
+        <EntityTypeShape EntityType="EstateAgencyModel.UserRequest" Width="1.5" PointX="12.125" PointY="7.75" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Address_City" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Address_Region" />
+        <AssociationConnector Association="EstateAgencyModel.FK_FlatBase_FlatType" />
+        <AssociationConnector Association="EstateAgencyModel.FK_UserFlatBase_FlatBase" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Request_FlatType" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Image_Request" />
+        <AssociationConnector Association="EstateAgencyModel.FK_ImageFlat_Image" />
+        <AssociationConnector Association="EstateAgencyModel.FK_UserRequest_Request" />
+        <EntityTypeShape EntityType="EstateAgencyModel.Flat" Width="1.5" PointX="7" PointY="13.375" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Flat_Address" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Flat_Owner" />
+        <AssociationConnector Association="EstateAgencyModel.FK_FlatBase_Flat" />
+        <AssociationConnector Association="EstateAgencyModel.FK_ImageFlat_Flat" />
+        <EntityTypeShape EntityType="EstateAgencyModel.FlatInformation" Width="1.5" PointX="3" PointY="8.875" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Flat_FlatInformation" />
+        <AssociationConnector Association="EstateAgencyModel.FK_FlatInformation_Heating" />
+        <AssociationConnector Association="EstateAgencyModel.FK_FlatInformation_Material" />
+        <AssociationConnector Association="EstateAgencyModel.FK_FlatInformation_Material1" />
+        <AssociationConnector Association="EstateAgencyModel.FK_FlatInformation_Material2" />
+        <EntityTypeShape EntityType="EstateAgencyModel.User" Width="1.5" PointX="2" PointY="4.375" />
+        <AssociationConnector Association="EstateAgencyModel.FK_Authorization_User" />
+        <AssociationConnector Association="EstateAgencyModel.FK_UserFlatBase_User" />
+        <AssociationConnector Association="EstateAgencyModel.FK_UserRequest_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

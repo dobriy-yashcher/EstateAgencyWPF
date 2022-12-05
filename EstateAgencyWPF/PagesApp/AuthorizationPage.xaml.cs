@@ -29,6 +29,7 @@ namespace EstateAgencyWPF.PagesApp
         {
             if(tbLogin.Text != "" && tbPassword.Password != "")
             {
+
                 var data = App.Connection.Authorization.Where(z => z.Login == tbLogin.Text && z.Password == tbPassword.Password).FirstOrDefault();
 
                 if (data != null)
@@ -37,6 +38,7 @@ namespace EstateAgencyWPF.PagesApp
                     //    NavigationService.Navigate(new AdminPage(DataLogin));
 
                     //else NavigationService.Navigate(new UserPage());
+                    NavigationService.Navigate(new AdminPage());
                 }
                 else MessageBox.Show("Неправильный логин или пароль");
             }

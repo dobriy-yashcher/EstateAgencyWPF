@@ -12,18 +12,24 @@ namespace EstateAgencyWPF.ADOApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class FlatBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public FlatBase()
         {
-            this.User = new HashSet<User>();
+            this.UserFlatBase = new HashSet<UserFlatBase>();
         }
     
-        public int IdRole { get; set; }
-        public string Name { get; set; }
+        public int IdFlatBase { get; set; }
+        public int Flat { get; set; }
+        public int Price { get; set; }
+        public int Type { get; set; }
+        public bool Available { get; set; }
+        public System.DateTime DatePublication { get; set; }
     
+        public virtual FlatType FlatType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<UserFlatBase> UserFlatBase { get; set; }
+        public virtual Flat Flat1 { get; set; }
     }
 }

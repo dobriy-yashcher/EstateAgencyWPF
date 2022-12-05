@@ -12,18 +12,13 @@ namespace EstateAgencyWPF.ADOApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class UserFlatBase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Region()
-        {
-            this.Address = new HashSet<Address>();
-        }
+        public int IdUserFlatBase { get; set; }
+        public int User { get; set; }
+        public int FlatBase { get; set; }
     
-        public int IdRegion { get; set; }
-        public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Address { get; set; }
+        public virtual FlatBase FlatBase1 { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

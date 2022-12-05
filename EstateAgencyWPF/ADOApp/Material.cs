@@ -12,18 +12,24 @@ namespace EstateAgencyWPF.ADOApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class Material
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Region()
+        public Material()
         {
-            this.Address = new HashSet<Address>();
+            this.FlatInformation = new HashSet<FlatInformation>();
+            this.FlatInformation1 = new HashSet<FlatInformation>();
+            this.FlatInformation2 = new HashSet<FlatInformation>();
         }
     
-        public int IdRegion { get; set; }
+        public int IdMaterial { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Address { get; set; }
+        public virtual ICollection<FlatInformation> FlatInformation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlatInformation> FlatInformation1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlatInformation> FlatInformation2 { get; set; }
     }
 }

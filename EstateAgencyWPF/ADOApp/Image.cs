@@ -12,18 +12,20 @@ namespace EstateAgencyWPF.ADOApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class Image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Region()
+        public Image()
         {
-            this.Address = new HashSet<Address>();
+            this.ImageFlat = new HashSet<ImageFlat>();
         }
     
-        public int IdRegion { get; set; }
-        public string Name { get; set; }
+        public int IdImage { get; set; }
+        public byte[] Image1 { get; set; }
+        public Nullable<int> Request { get; set; }
     
+        public virtual Request Request1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Address { get; set; }
+        public virtual ICollection<ImageFlat> ImageFlat { get; set; }
     }
 }

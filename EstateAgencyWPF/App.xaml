@@ -41,6 +41,19 @@
         </Style>
 
 
+        <Style x:Key="logo" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style x:Key="menuButton" TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="0 7 0 0" />
             <Setter Property="FontSize" Value="14" />
@@ -69,7 +82,35 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
+        <Style x:Key="menuButton2" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="0 7 0 0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="90" />
+            <!--Background="#AC0F0F" Foreground="#FFFFFF"-->
+            <Setter Property="Background" Value="#AC0F0F" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15" Padding="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--<Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFFF" />
+                    <Setter Property="Foreground" Value="#AC0F0F" />
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#FFFFFF" />
+                    <Setter Property="Foreground" Value="#921C1B" />
+                </Trigger>
+            </Style.Triggers>-->
+        </Style>
 
         <Style x:Key="menuButtonIcon" TargetType="fa:ImageAwesome">
             <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
@@ -77,10 +118,10 @@
             <Setter Property="Height" Value="20" />
         </Style>
 
-
         <Style x:Key="menuButtonText" TargetType="TextBlock">
             <Setter Property="Margin" Value="0 7 0 0" />
         </Style>
+
 
         <Style x:Key="infoCard" TargetType="Border">
             <Setter Property="CornerRadius" Value="15" />
@@ -120,6 +161,66 @@
         </Style>
 
 
+        <Style x:Key="textBox" TargetType="TextBox">
+            <Setter Property="Margin" Value="0 10 0 0" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#202934" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border Background="{TemplateBinding Background}" 
+                                x:Name="Bd" BorderBrush="Black"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="Width" Value="Auto">
+                                <Setter Property="MinWidth" Value="100"/>
+                            </Trigger>
+                            <Trigger Property="Height" Value="Auto">
+                                <Setter Property="MinHeight" Value="20"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="passwordBox" TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0 10 0 0" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#202934" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Background="{TemplateBinding Background}" 
+                                x:Name="Bd" BorderBrush="Black"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="Width" Value="Auto">
+                                <Setter Property="MinWidth" Value="100"/>
+                            </Trigger>
+                            <Trigger Property="Height" Value="Auto">
+                                <Setter Property="MinHeight" Value="20"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="button" TargetType="Button">
             <Setter Property="Height" Value="40" />
             <Setter Property="Width" Value="170" />

@@ -14,6 +14,18 @@ namespace EstateAgencyWPF.ADOApp
     
     public partial class Owner
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Owner()
+        {
+            this.Flat = new HashSet<Flat>();
+        }
+    
         public int IdOwner { get; set; }
+        public string Name { get; set; }
+        public string Telephone { get; set; }
+        public string Email { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Flat> Flat { get; set; }
     }
 }
