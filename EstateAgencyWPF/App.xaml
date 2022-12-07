@@ -5,15 +5,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              StartupUri="WindowsApp/MainWindow.xaml">
     <Application.Resources>
-        <!--<ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>-->
-
+        
         <Style x:Key="menuTitle" TargetType="TextBlock">
             <Setter Property="Margin" Value="0 0 25 0" />
             <Setter Property="FontSize" Value="16" />
@@ -87,7 +79,6 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="90" />
-            <!--Background="#AC0F0F" Foreground="#FFFFFF"-->
             <Setter Property="Background" Value="#AC0F0F" />
             <Setter Property="Foreground" Value="#FFFFFF" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -100,16 +91,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!--<Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FFFFFF" />
-                    <Setter Property="Foreground" Value="#AC0F0F" />
-                </Trigger>
-                <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="Background" Value="#FFFFFF" />
-                    <Setter Property="Foreground" Value="#921C1B" />
-                </Trigger>
-            </Style.Triggers>-->
         </Style>
 
         <Style x:Key="menuButtonIcon" TargetType="fa:ImageAwesome">
@@ -161,9 +142,18 @@
         </Style>
 
 
+        <Style x:Key="comboBox" TargetType="ComboBox">
+            <Setter Property="Margin" Value="0 10 0 0" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#202934" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            
+        </Style>
         <Style x:Key="textBox" TargetType="TextBox">
             <Setter Property="Margin" Value="0 10 0 0" />
-            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#202934" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -193,7 +183,7 @@
         </Style>
         <Style x:Key="passwordBox" TargetType="PasswordBox">
             <Setter Property="Margin" Value="0 10 0 0" />
-            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#202934" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -281,7 +271,7 @@
         <Style x:Key="socialCard" TargetType="Border">
             <Setter Property="Background" Value="#FDFDFD" />
             <Setter Property="CornerRadius" Value="15" />
-            <Setter Property="Margin" Value="8 20 8 0" />
+            <!--<Setter Property="Margin" Value="8 20 8 0" />-->
             <Setter Property="BorderBrush" Value="#dbdbdb" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
@@ -315,7 +305,7 @@
 
         <Style x:Key="socialCardCounterTitle" TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontSize" Value="38" />
             <Setter Property="Margin" Value="0 50 0 5" />
         </Style>
 

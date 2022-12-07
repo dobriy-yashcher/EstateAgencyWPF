@@ -23,6 +23,7 @@ namespace EstateAgencyWPF.PagesApp
         public BuyFlatPage()
         {
             InitializeComponent();
+            LViewFlats.ItemsSource = App.Connection.FlatBase.Where(z => z.Type == 1).ToList();
         }
     }
 }

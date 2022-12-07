@@ -25,23 +25,23 @@ namespace EstateAgencyWPF.ADOApp
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Authorization> Authorization { get; set; }
-        public virtual DbSet<Owner> Owner { get; set; }
-        public virtual DbSet<Region> Region { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Authorization> Authorization { get; set; }
         public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Flat> Flat { get; set; }
         public virtual DbSet<FlatBase> FlatBase { get; set; }
+        public virtual DbSet<FlatInformation> FlatInformation { get; set; }
         public virtual DbSet<FlatType> FlatType { get; set; }
         public virtual DbSet<Heating> Heating { get; set; }
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<ImageFlat> ImageFlat { get; set; }
         public virtual DbSet<Material> Material { get; set; }
+        public virtual DbSet<Owner> Owner { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Request> Request { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserFlatBase> UserFlatBase { get; set; }
         public virtual DbSet<UserRequest> UserRequest { get; set; }
-        public virtual DbSet<Flat> Flat { get; set; }
-        public virtual DbSet<FlatInformation> FlatInformation { get; set; }
-        public virtual DbSet<User> User { get; set; }
     }
 }

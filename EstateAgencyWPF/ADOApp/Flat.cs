@@ -27,11 +27,11 @@ namespace EstateAgencyWPF.ADOApp
         public int Address { get; set; }
     
         public virtual Address Address1 { get; set; }
+        public virtual FlatInformation FlatInformation1 { get; set; }
         public virtual Owner Owner1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FlatBase> FlatBase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImageFlat> ImageFlat { get; set; }
-        public virtual FlatInformation FlatInformation1 { get; set; }
     }
 }

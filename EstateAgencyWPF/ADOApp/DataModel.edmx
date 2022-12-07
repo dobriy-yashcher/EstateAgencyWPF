@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EstateAgencyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EstateAgencyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="IdAddress" />
@@ -28,7 +28,7 @@
           <Key>
             <PropertyRef Name="IdCity" />
           </Key>
-          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="IdCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Flat">
@@ -513,148 +513,11 @@
             <End Role="UserRequest" EntitySet="UserRequest" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EstateAgencyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Authorization">
-          <Key>
-            <PropertyRef Name="IdAuthorization" />
-          </Key>
-          <Property Name="IdAuthorization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="User" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User1" Relationship="EstateAgencyModel.FK_Authorization_User" FromRole="Authorization" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Owner">
-          <Key>
-            <PropertyRef Name="IdOwner" />
-          </Key>
-          <Property Name="IdOwner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Flat" Relationship="EstateAgencyModel.FK_Flat_Owner" FromRole="Owner" ToRole="Flat" />
-        </EntityType>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="IdRegion" />
-          </Key>
-          <Property Name="IdRegion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Address" Relationship="EstateAgencyModel.FK_Address_Region" FromRole="Region" ToRole="Address" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityContainer Name="EstateAgencyEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Authorization" EntityType="Self.Authorization" />
-          <EntitySet Name="Owner" EntityType="Self.Owner" />
-          <EntitySet Name="Region" EntityType="Self.Region" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Address" EntityType="EstateAgencyModel.Address" />
-          <EntitySet Name="City" EntityType="EstateAgencyModel.City" />
-          <EntitySet Name="FlatBase" EntityType="EstateAgencyModel.FlatBase" />
-          <EntitySet Name="FlatType" EntityType="EstateAgencyModel.FlatType" />
-          <EntitySet Name="Heating" EntityType="EstateAgencyModel.Heating" />
-          <EntitySet Name="Image" EntityType="EstateAgencyModel.Image" />
-          <EntitySet Name="ImageFlat" EntityType="EstateAgencyModel.ImageFlat" />
-          <EntitySet Name="Material" EntityType="EstateAgencyModel.Material" />
-          <EntitySet Name="Request" EntityType="EstateAgencyModel.Request" />
-          <EntitySet Name="UserFlatBase" EntityType="EstateAgencyModel.UserFlatBase" />
-          <EntitySet Name="UserRequest" EntityType="EstateAgencyModel.UserRequest" />
-          <AssociationSet Name="FK_Address_City" Association="EstateAgencyModel.FK_Address_City">
-            <End Role="City" EntitySet="City" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Address_Region" Association="EstateAgencyModel.FK_Address_Region">
-            <End Role="Region" EntitySet="Region" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FlatBase_FlatType" Association="EstateAgencyModel.FK_FlatBase_FlatType">
-            <End Role="FlatType" EntitySet="FlatType" />
-            <End Role="FlatBase" EntitySet="FlatBase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserFlatBase_FlatBase" Association="EstateAgencyModel.FK_UserFlatBase_FlatBase">
-            <End Role="FlatBase" EntitySet="FlatBase" />
-            <End Role="UserFlatBase" EntitySet="UserFlatBase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_FlatType" Association="EstateAgencyModel.FK_Request_FlatType">
-            <End Role="FlatType" EntitySet="FlatType" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Image_Request" Association="EstateAgencyModel.FK_Image_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="Image" EntitySet="Image" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImageFlat_Image" Association="EstateAgencyModel.FK_ImageFlat_Image">
-            <End Role="Image" EntitySet="Image" />
-            <End Role="ImageFlat" EntitySet="ImageFlat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRequest_Request" Association="EstateAgencyModel.FK_UserRequest_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="UserRequest" EntitySet="UserRequest" />
-          </AssociationSet>
-          <EntitySet Name="Flat" EntityType="EstateAgencyModel.Flat" />
-          <AssociationSet Name="FK_Flat_Address" Association="EstateAgencyModel.FK_Flat_Address">
-            <End Role="Address" EntitySet="Address" />
-            <End Role="Flat" EntitySet="Flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Flat_Owner" Association="EstateAgencyModel.FK_Flat_Owner">
-            <End Role="Owner" EntitySet="Owner" />
-            <End Role="Flat" EntitySet="Flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FlatBase_Flat" Association="EstateAgencyModel.FK_FlatBase_Flat">
-            <End Role="Flat" EntitySet="Flat" />
-            <End Role="FlatBase" EntitySet="FlatBase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImageFlat_Flat" Association="EstateAgencyModel.FK_ImageFlat_Flat">
-            <End Role="Flat" EntitySet="Flat" />
-            <End Role="ImageFlat" EntitySet="ImageFlat" />
-          </AssociationSet>
-          <EntitySet Name="FlatInformation" EntityType="EstateAgencyModel.FlatInformation" />
-          <AssociationSet Name="FK_Flat_FlatInformation" Association="EstateAgencyModel.FK_Flat_FlatInformation">
-            <End Role="FlatInformation" EntitySet="FlatInformation" />
-            <End Role="Flat" EntitySet="Flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FlatInformation_Heating" Association="EstateAgencyModel.FK_FlatInformation_Heating">
-            <End Role="Heating" EntitySet="Heating" />
-            <End Role="FlatInformation" EntitySet="FlatInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FlatInformation_Material" Association="EstateAgencyModel.FK_FlatInformation_Material">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="FlatInformation" EntitySet="FlatInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FlatInformation_Material1" Association="EstateAgencyModel.FK_FlatInformation_Material1">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="FlatInformation" EntitySet="FlatInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FlatInformation_Material2" Association="EstateAgencyModel.FK_FlatInformation_Material2">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="FlatInformation" EntitySet="FlatInformation" />
-          </AssociationSet>
-          <EntitySet Name="User" EntityType="EstateAgencyModel.User" />
-          <AssociationSet Name="FK_Authorization_User" Association="EstateAgencyModel.FK_Authorization_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Authorization" EntitySet="Authorization" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserFlatBase_User" Association="EstateAgencyModel.FK_UserFlatBase_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserFlatBase" EntitySet="UserFlatBase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRequest_User" Association="EstateAgencyModel.FK_UserRequest_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserRequest" EntitySet="UserRequest" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="IdAddress" />
@@ -664,17 +527,41 @@
           <Property Name="Region" Type="Int32" Nullable="false" />
           <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="House" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="City1" Relationship="EstateAgencyModel.FK_Address_City" FromRole="Address" ToRole="City" />
-          <NavigationProperty Name="Region1" Relationship="EstateAgencyModel.FK_Address_Region" FromRole="Address" ToRole="Region" />
-          <NavigationProperty Name="Flat" Relationship="EstateAgencyModel.FK_Flat_Address" FromRole="Address" ToRole="Flat" />
+          <NavigationProperty Name="City1" Relationship="Self.FK_Address_City" FromRole="Address" ToRole="City" />
+          <NavigationProperty Name="Region1" Relationship="Self.FK_Address_Region" FromRole="Address" ToRole="Region" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_Flat_Address" FromRole="Address" ToRole="Flat" />
+        </EntityType>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="IdAuthorization" />
+          </Key>
+          <Property Name="IdAuthorization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Authorization_User" FromRole="Authorization" ToRole="User" />
         </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
           </Key>
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Address" Relationship="EstateAgencyModel.FK_Address_City" FromRole="City" ToRole="Address" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Address_City" FromRole="City" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="Flat">
+          <Key>
+            <PropertyRef Name="IdFlat" />
+          </Key>
+          <Property Name="IdFlat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Owner" Type="Int32" Nullable="false" />
+          <Property Name="FlatInformation" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address1" Relationship="Self.FK_Flat_Address" FromRole="Flat" ToRole="Address" />
+          <NavigationProperty Name="FlatInformation1" Relationship="Self.FK_Flat_FlatInformation" FromRole="Flat" ToRole="FlatInformation" />
+          <NavigationProperty Name="Owner1" Relationship="Self.FK_Flat_Owner" FromRole="Flat" ToRole="Owner" />
+          <NavigationProperty Name="FlatBase" Relationship="Self.FK_FlatBase_Flat" FromRole="Flat" ToRole="FlatBase" />
+          <NavigationProperty Name="ImageFlat" Relationship="Self.FK_ImageFlat_Flat" FromRole="Flat" ToRole="ImageFlat" />
         </EntityType>
         <EntityType Name="FlatBase">
           <Key>
@@ -686,253 +573,10 @@
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="Available" Type="Boolean" Nullable="false" />
           <Property Name="DatePublication" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="FlatType" Relationship="EstateAgencyModel.FK_FlatBase_FlatType" FromRole="FlatBase" ToRole="FlatType" />
-          <NavigationProperty Name="UserFlatBase" Relationship="EstateAgencyModel.FK_UserFlatBase_FlatBase" FromRole="FlatBase" ToRole="UserFlatBase" />
-          <NavigationProperty Name="Flat1" Relationship="EstateAgencyModel.FK_FlatBase_Flat" FromRole="FlatBase" ToRole="Flat" />
+          <NavigationProperty Name="Flat1" Relationship="Self.FK_FlatBase_Flat" FromRole="FlatBase" ToRole="Flat" />
+          <NavigationProperty Name="FlatType" Relationship="Self.FK_FlatBase_FlatType" FromRole="FlatBase" ToRole="FlatType" />
+          <NavigationProperty Name="UserFlatBase" Relationship="Self.FK_UserFlatBase_FlatBase" FromRole="FlatBase" ToRole="UserFlatBase" />
         </EntityType>
-        <EntityType Name="FlatType">
-          <Key>
-            <PropertyRef Name="IdFlatType" />
-          </Key>
-          <Property Name="IdFlatType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FlatBase" Relationship="EstateAgencyModel.FK_FlatBase_FlatType" FromRole="FlatType" ToRole="FlatBase" />
-          <NavigationProperty Name="Request" Relationship="EstateAgencyModel.FK_Request_FlatType" FromRole="FlatType" ToRole="Request" />
-        </EntityType>
-        <EntityType Name="Heating">
-          <Key>
-            <PropertyRef Name="IdHeating" />
-          </Key>
-          <Property Name="IdHeating" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FlatInformation" Relationship="EstateAgencyModel.FK_FlatInformation_Heating" FromRole="Heating" ToRole="FlatInformation" />
-        </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="IdImage" />
-          </Key>
-          <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Image1" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="Request" Type="Int32" />
-          <NavigationProperty Name="Request1" Relationship="EstateAgencyModel.FK_Image_Request" FromRole="Image" ToRole="Request" />
-          <NavigationProperty Name="ImageFlat" Relationship="EstateAgencyModel.FK_ImageFlat_Image" FromRole="Image" ToRole="ImageFlat" />
-        </EntityType>
-        <EntityType Name="ImageFlat">
-          <Key>
-            <PropertyRef Name="IdImageFlat" />
-          </Key>
-          <Property Name="IdImageFlat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Flat" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Image1" Relationship="EstateAgencyModel.FK_ImageFlat_Image" FromRole="ImageFlat" ToRole="Image" />
-          <NavigationProperty Name="Flat1" Relationship="EstateAgencyModel.FK_ImageFlat_Flat" FromRole="ImageFlat" ToRole="Flat" />
-        </EntityType>
-        <EntityType Name="Material">
-          <Key>
-            <PropertyRef Name="IdMaterial" />
-          </Key>
-          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FlatInformation" Relationship="EstateAgencyModel.FK_FlatInformation_Material" FromRole="Material" ToRole="FlatInformation" />
-          <NavigationProperty Name="FlatInformation1" Relationship="EstateAgencyModel.FK_FlatInformation_Material1" FromRole="Material" ToRole="FlatInformation" />
-          <NavigationProperty Name="FlatInformation2" Relationship="EstateAgencyModel.FK_FlatInformation_Material2" FromRole="Material" ToRole="FlatInformation" />
-          </EntityType>
-        <EntityType Name="Request">
-          <Key>
-            <PropertyRef Name="IdRequest" />
-          </Key>
-          <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FlatType" Type="Int32" Nullable="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Region" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Space" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="FlatType1" Relationship="EstateAgencyModel.FK_Request_FlatType" FromRole="Request" ToRole="FlatType" />
-          <NavigationProperty Name="Image" Relationship="EstateAgencyModel.FK_Image_Request" FromRole="Request" ToRole="Image" />
-          <NavigationProperty Name="UserRequest" Relationship="EstateAgencyModel.FK_UserRequest_Request" FromRole="Request" ToRole="UserRequest" />
-        </EntityType>
-        <EntityType Name="UserFlatBase">
-          <Key>
-            <PropertyRef Name="IdUserFlatBase" />
-          </Key>
-          <Property Name="IdUserFlatBase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User" Type="Int32" Nullable="false" />
-          <Property Name="FlatBase" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FlatBase1" Relationship="EstateAgencyModel.FK_UserFlatBase_FlatBase" FromRole="UserFlatBase" ToRole="FlatBase" />
-          <NavigationProperty Name="User1" Relationship="EstateAgencyModel.FK_UserFlatBase_User" FromRole="UserFlatBase" ToRole="User" />
-        </EntityType>
-        <EntityType Name="UserRequest">
-          <Key>
-            <PropertyRef Name="IdUserRequset" />
-          </Key>
-          <Property Name="IdUserRequset" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User" Type="Int32" Nullable="false" />
-          <Property Name="Request" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Request1" Relationship="EstateAgencyModel.FK_UserRequest_Request" FromRole="UserRequest" ToRole="Request" />
-          <NavigationProperty Name="User1" Relationship="EstateAgencyModel.FK_UserRequest_User" FromRole="UserRequest" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_Address_City">
-          <End Type="EstateAgencyModel.City" Role="City" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Address" Role="Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="IdCity" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="City" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Address_Region">
-          <End Type="EstateAgencyModel.Region" Role="Region" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Address" Role="Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="IdRegion" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="Region" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FlatBase_FlatType">
-          <End Type="EstateAgencyModel.FlatType" Role="FlatType" Multiplicity="1" />
-          <End Type="EstateAgencyModel.FlatBase" Role="FlatBase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FlatType">
-              <PropertyRef Name="IdFlatType" />
-            </Principal>
-            <Dependent Role="FlatBase">
-              <PropertyRef Name="Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserFlatBase_FlatBase">
-          <End Type="EstateAgencyModel.FlatBase" Role="FlatBase" Multiplicity="1" />
-          <End Type="EstateAgencyModel.UserFlatBase" Role="UserFlatBase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FlatBase">
-              <PropertyRef Name="IdFlatBase" />
-            </Principal>
-            <Dependent Role="UserFlatBase">
-              <PropertyRef Name="FlatBase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Request_FlatType">
-          <End Type="EstateAgencyModel.FlatType" Role="FlatType" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Request" Role="Request" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FlatType">
-              <PropertyRef Name="IdFlatType" />
-            </Principal>
-            <Dependent Role="Request">
-              <PropertyRef Name="FlatType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Image_Request">
-          <End Type="EstateAgencyModel.Request" Role="Request" Multiplicity="0..1" />
-          <End Type="EstateAgencyModel.Image" Role="Image" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Request">
-              <PropertyRef Name="IdRequest" />
-            </Principal>
-            <Dependent Role="Image">
-              <PropertyRef Name="Request" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ImageFlat_Image">
-          <End Type="EstateAgencyModel.Image" Role="Image" Multiplicity="1" />
-          <End Type="EstateAgencyModel.ImageFlat" Role="ImageFlat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Image">
-              <PropertyRef Name="IdImage" />
-            </Principal>
-            <Dependent Role="ImageFlat">
-              <PropertyRef Name="Image" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserRequest_Request">
-          <End Type="EstateAgencyModel.Request" Role="Request" Multiplicity="1" />
-          <End Type="EstateAgencyModel.UserRequest" Role="UserRequest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Request">
-              <PropertyRef Name="IdRequest" />
-            </Principal>
-            <Dependent Role="UserRequest">
-              <PropertyRef Name="Request" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Flat">
-          <Key>
-            <PropertyRef Name="IdFlat" />
-          </Key>
-          <Property Name="IdFlat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Owner" Type="Int32" Nullable="false" />
-          <Property Name="FlatInformation" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Address1" Relationship="EstateAgencyModel.FK_Flat_Address" FromRole="Flat" ToRole="Address" />
-          <NavigationProperty Name="Owner1" Relationship="EstateAgencyModel.FK_Flat_Owner" FromRole="Flat" ToRole="Owner" />
-          <NavigationProperty Name="FlatBase" Relationship="EstateAgencyModel.FK_FlatBase_Flat" FromRole="Flat" ToRole="FlatBase" />
-          <NavigationProperty Name="ImageFlat" Relationship="EstateAgencyModel.FK_ImageFlat_Flat" FromRole="Flat" ToRole="ImageFlat" />
-          <NavigationProperty Name="FlatInformation1" Relationship="EstateAgencyModel.FK_Flat_FlatInformation" FromRole="Flat" ToRole="FlatInformation" />
-        </EntityType>
-        <Association Name="FK_Flat_Address">
-          <End Type="EstateAgencyModel.Address" Role="Address" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Flat" Role="Flat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="IdAddress" />
-            </Principal>
-            <Dependent Role="Flat">
-              <PropertyRef Name="Address" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Flat_Owner">
-          <End Type="EstateAgencyModel.Owner" Role="Owner" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Flat" Role="Flat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Owner">
-              <PropertyRef Name="IdOwner" />
-            </Principal>
-            <Dependent Role="Flat">
-              <PropertyRef Name="Owner" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FlatBase_Flat">
-          <End Type="EstateAgencyModel.Flat" Role="Flat" Multiplicity="1" />
-          <End Type="EstateAgencyModel.FlatBase" Role="FlatBase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Flat">
-              <PropertyRef Name="IdFlat" />
-            </Principal>
-            <Dependent Role="FlatBase">
-              <PropertyRef Name="Flat" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ImageFlat_Flat">
-          <End Type="EstateAgencyModel.Flat" Role="Flat" Multiplicity="1" />
-          <End Type="EstateAgencyModel.ImageFlat" Role="ImageFlat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Flat">
-              <PropertyRef Name="IdFlat" />
-            </Principal>
-            <Dependent Role="ImageFlat">
-              <PropertyRef Name="Flat" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="FlatInformation">
           <Key>
             <PropertyRef Name="IdFlatInformation" />
@@ -953,15 +597,186 @@
           <Property Name="Terrace" Type="Int32" />
           <Property Name="Heating" Type="Int32" />
           <Property Name="KitchenSpace" Type="Int32" />
-          <NavigationProperty Name="Flat" Relationship="EstateAgencyModel.FK_Flat_FlatInformation" FromRole="FlatInformation" ToRole="Flat" />
-          <NavigationProperty Name="Heating1" Relationship="EstateAgencyModel.FK_FlatInformation_Heating" FromRole="FlatInformation" ToRole="Heating" />
-          <NavigationProperty Name="Material" Relationship="EstateAgencyModel.FK_FlatInformation_Material" FromRole="FlatInformation" ToRole="Material" />
-          <NavigationProperty Name="Material1" Relationship="EstateAgencyModel.FK_FlatInformation_Material1" FromRole="FlatInformation" ToRole="Material" />
-          <NavigationProperty Name="Material2" Relationship="EstateAgencyModel.FK_FlatInformation_Material2" FromRole="FlatInformation" ToRole="Material" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_Flat_FlatInformation" FromRole="FlatInformation" ToRole="Flat" />
+          <NavigationProperty Name="Heating1" Relationship="Self.FK_FlatInformation_Heating" FromRole="FlatInformation" ToRole="Heating" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_FlatInformation_Material" FromRole="FlatInformation" ToRole="Material" />
+          <NavigationProperty Name="Material1" Relationship="Self.FK_FlatInformation_Material1" FromRole="FlatInformation" ToRole="Material" />
+          <NavigationProperty Name="Material2" Relationship="Self.FK_FlatInformation_Material2" FromRole="FlatInformation" ToRole="Material" />
         </EntityType>
+        <EntityType Name="FlatType">
+          <Key>
+            <PropertyRef Name="IdFlatType" />
+          </Key>
+          <Property Name="IdFlatType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FlatBase" Relationship="Self.FK_FlatBase_FlatType" FromRole="FlatType" ToRole="FlatBase" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_FlatType" FromRole="FlatType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Heating">
+          <Key>
+            <PropertyRef Name="IdHeating" />
+          </Key>
+          <Property Name="IdHeating" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FlatInformation" Relationship="Self.FK_FlatInformation_Heating" FromRole="Heating" ToRole="FlatInformation" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="IdImage" />
+          </Key>
+          <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Request" Type="Int32" />
+          <NavigationProperty Name="Request1" Relationship="Self.FK_Image_Request" FromRole="Image" ToRole="Request" />
+          <NavigationProperty Name="ImageFlat" Relationship="Self.FK_ImageFlat_Image" FromRole="Image" ToRole="ImageFlat" />
+        </EntityType>
+        <EntityType Name="ImageFlat">
+          <Key>
+            <PropertyRef Name="IdImageFlat" />
+          </Key>
+          <Property Name="IdImageFlat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Flat" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flat1" Relationship="Self.FK_ImageFlat_Flat" FromRole="ImageFlat" ToRole="Flat" />
+          <NavigationProperty Name="Image1" Relationship="Self.FK_ImageFlat_Image" FromRole="ImageFlat" ToRole="Image" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FlatInformation" Relationship="Self.FK_FlatInformation_Material" FromRole="Material" ToRole="FlatInformation" />
+          <NavigationProperty Name="FlatInformation1" Relationship="Self.FK_FlatInformation_Material1" FromRole="Material" ToRole="FlatInformation" />
+          <NavigationProperty Name="FlatInformation2" Relationship="Self.FK_FlatInformation_Material2" FromRole="Material" ToRole="FlatInformation" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="IdOwner" />
+          </Key>
+          <Property Name="IdOwner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Flat" Relationship="Self.FK_Flat_Owner" FromRole="Owner" ToRole="Flat" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="IdRegion" />
+          </Key>
+          <Property Name="IdRegion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Address_Region" FromRole="Region" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatType" Type="Int32" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Space" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FlatType1" Relationship="Self.FK_Request_FlatType" FromRole="Request" ToRole="FlatType" />
+          <NavigationProperty Name="Image" Relationship="Self.FK_Image_Request" FromRole="Request" ToRole="Image" />
+          <NavigationProperty Name="UserRequest" Relationship="Self.FK_UserRequest_Request" FromRole="Request" ToRole="UserRequest" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_User" FromRole="User" ToRole="Authorization" />
+          <NavigationProperty Name="UserFlatBase" Relationship="Self.FK_UserFlatBase_User" FromRole="User" ToRole="UserFlatBase" />
+          <NavigationProperty Name="UserRequest" Relationship="Self.FK_UserRequest_User" FromRole="User" ToRole="UserRequest" />
+        </EntityType>
+        <EntityType Name="UserFlatBase">
+          <Key>
+            <PropertyRef Name="IdUserFlatBase" />
+          </Key>
+          <Property Name="IdUserFlatBase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="FlatBase" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FlatBase1" Relationship="Self.FK_UserFlatBase_FlatBase" FromRole="UserFlatBase" ToRole="FlatBase" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_UserFlatBase_User" FromRole="UserFlatBase" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserRequest">
+          <Key>
+            <PropertyRef Name="IdUserRequset" />
+          </Key>
+          <Property Name="IdUserRequset" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="Request" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Request1" Relationship="Self.FK_UserRequest_Request" FromRole="UserRequest" ToRole="Request" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_UserRequest_User" FromRole="UserRequest" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Address_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="IdRegion" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="Region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flat_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Flat" Type="Self.Flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="IdAddress" />
+            </Principal>
+            <Dependent Role="Flat">
+              <PropertyRef Name="Address" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Flat_FlatInformation">
-          <End Type="EstateAgencyModel.FlatInformation" Role="FlatInformation" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Flat" Role="Flat" Multiplicity="*" />
+          <End Role="FlatInformation" Type="Self.FlatInformation" Multiplicity="1" />
+          <End Role="Flat" Type="Self.Flat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FlatInformation">
               <PropertyRef Name="IdFlatInformation" />
@@ -971,9 +786,69 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Flat_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Flat" Type="Self.Flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="IdOwner" />
+            </Principal>
+            <Dependent Role="Flat">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlatBase_Flat">
+          <End Role="Flat" Type="Self.Flat" Multiplicity="1" />
+          <End Role="FlatBase" Type="Self.FlatBase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flat">
+              <PropertyRef Name="IdFlat" />
+            </Principal>
+            <Dependent Role="FlatBase">
+              <PropertyRef Name="Flat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageFlat_Flat">
+          <End Role="Flat" Type="Self.Flat" Multiplicity="1" />
+          <End Role="ImageFlat" Type="Self.ImageFlat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flat">
+              <PropertyRef Name="IdFlat" />
+            </Principal>
+            <Dependent Role="ImageFlat">
+              <PropertyRef Name="Flat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlatBase_FlatType">
+          <End Role="FlatType" Type="Self.FlatType" Multiplicity="1" />
+          <End Role="FlatBase" Type="Self.FlatBase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlatType">
+              <PropertyRef Name="IdFlatType" />
+            </Principal>
+            <Dependent Role="FlatBase">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFlatBase_FlatBase">
+          <End Role="FlatBase" Type="Self.FlatBase" Multiplicity="1" />
+          <End Role="UserFlatBase" Type="Self.UserFlatBase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlatBase">
+              <PropertyRef Name="IdFlatBase" />
+            </Principal>
+            <Dependent Role="UserFlatBase">
+              <PropertyRef Name="FlatBase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FlatInformation_Heating">
-          <End Type="EstateAgencyModel.Heating" Role="Heating" Multiplicity="0..1" />
-          <End Type="EstateAgencyModel.FlatInformation" Role="FlatInformation" Multiplicity="*" />
+          <End Role="Heating" Type="Self.Heating" Multiplicity="0..1" />
+          <End Role="FlatInformation" Type="Self.FlatInformation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Heating">
               <PropertyRef Name="IdHeating" />
@@ -984,8 +859,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FlatInformation_Material">
-          <End Type="EstateAgencyModel.Material" Role="Material" Multiplicity="0..1" />
-          <End Type="EstateAgencyModel.FlatInformation" Role="FlatInformation" Multiplicity="*" />
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="FlatInformation" Type="Self.FlatInformation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
               <PropertyRef Name="IdMaterial" />
@@ -996,8 +871,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FlatInformation_Material1">
-          <End Type="EstateAgencyModel.Material" Role="Material" Multiplicity="0..1" />
-          <End Type="EstateAgencyModel.FlatInformation" Role="FlatInformation" Multiplicity="*" />
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="FlatInformation" Type="Self.FlatInformation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
               <PropertyRef Name="IdMaterial" />
@@ -1008,8 +883,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FlatInformation_Material2">
-          <End Type="EstateAgencyModel.Material" Role="Material" Multiplicity="0..1" />
-          <End Type="EstateAgencyModel.FlatInformation" Role="FlatInformation" Multiplicity="*" />
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="FlatInformation" Type="Self.FlatInformation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
               <PropertyRef Name="IdMaterial" />
@@ -1019,31 +894,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="IdUser" />
-          </Key>
-          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Authorization" Relationship="EstateAgencyModel.FK_Authorization_User" FromRole="User" ToRole="Authorization" />
-          <NavigationProperty Name="UserFlatBase" Relationship="EstateAgencyModel.FK_UserFlatBase_User" FromRole="User" ToRole="UserFlatBase" />
-          <NavigationProperty Name="UserRequest" Relationship="EstateAgencyModel.FK_UserRequest_User" FromRole="User" ToRole="UserRequest" />
-        </EntityType>
-        <Association Name="FK_Authorization_User">
-          <End Type="EstateAgencyModel.User" Role="User" Multiplicity="1" />
-          <End Type="EstateAgencyModel.Authorization" Role="Authorization" Multiplicity="*" />
+        <Association Name="FK_Request_FlatType">
+          <End Role="FlatType" Type="Self.FlatType" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="IdUser" />
+            <Principal Role="FlatType">
+              <PropertyRef Name="IdFlatType" />
             </Principal>
-            <Dependent Role="Authorization">
-              <PropertyRef Name="User" />
+            <Dependent Role="Request">
+              <PropertyRef Name="FlatType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="Request" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageFlat_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="1" />
+          <End Role="ImageFlat" Type="Self.ImageFlat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="IdImage" />
+            </Principal>
+            <Dependent Role="ImageFlat">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRequest_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="UserRequest" Type="Self.UserRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="UserRequest">
+              <PropertyRef Name="Request" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserFlatBase_User">
-          <End Type="EstateAgencyModel.User" Role="User" Multiplicity="1" />
-          <End Type="EstateAgencyModel.UserFlatBase" Role="UserFlatBase" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserFlatBase" Type="Self.UserFlatBase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="IdUser" />
@@ -1054,8 +955,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRequest_User">
-          <End Type="EstateAgencyModel.User" Role="User" Multiplicity="1" />
-          <End Type="EstateAgencyModel.UserRequest" Role="UserRequest" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRequest" Type="Self.UserRequest" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="IdUser" />
@@ -1065,12 +966,123 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="EstateAgencyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="Authorization" EntityType="Self.Authorization" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Flat" EntityType="Self.Flat" />
+          <EntitySet Name="FlatBase" EntityType="Self.FlatBase" />
+          <EntitySet Name="FlatInformation" EntityType="Self.FlatInformation" />
+          <EntitySet Name="FlatType" EntityType="Self.FlatType" />
+          <EntitySet Name="Heating" EntityType="Self.Heating" />
+          <EntitySet Name="Image" EntityType="Self.Image" />
+          <EntitySet Name="ImageFlat" EntityType="Self.ImageFlat" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" />
+          <EntitySet Name="Region" EntityType="Self.Region" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserFlatBase" EntityType="Self.UserFlatBase" />
+          <EntitySet Name="UserRequest" EntityType="Self.UserRequest" />
+          <AssociationSet Name="FK_Address_City" Association="Self.FK_Address_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_Region" Association="Self.FK_Address_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flat_Address" Association="Self.FK_Flat_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Flat" EntitySet="Flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_User" Association="Self.FK_Authorization_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flat_FlatInformation" Association="Self.FK_Flat_FlatInformation">
+            <End Role="FlatInformation" EntitySet="FlatInformation" />
+            <End Role="Flat" EntitySet="Flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flat_Owner" Association="Self.FK_Flat_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Flat" EntitySet="Flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatBase_Flat" Association="Self.FK_FlatBase_Flat">
+            <End Role="Flat" EntitySet="Flat" />
+            <End Role="FlatBase" EntitySet="FlatBase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageFlat_Flat" Association="Self.FK_ImageFlat_Flat">
+            <End Role="Flat" EntitySet="Flat" />
+            <End Role="ImageFlat" EntitySet="ImageFlat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatBase_FlatType" Association="Self.FK_FlatBase_FlatType">
+            <End Role="FlatType" EntitySet="FlatType" />
+            <End Role="FlatBase" EntitySet="FlatBase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFlatBase_FlatBase" Association="Self.FK_UserFlatBase_FlatBase">
+            <End Role="FlatBase" EntitySet="FlatBase" />
+            <End Role="UserFlatBase" EntitySet="UserFlatBase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatInformation_Heating" Association="Self.FK_FlatInformation_Heating">
+            <End Role="Heating" EntitySet="Heating" />
+            <End Role="FlatInformation" EntitySet="FlatInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatInformation_Material" Association="Self.FK_FlatInformation_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FlatInformation" EntitySet="FlatInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatInformation_Material1" Association="Self.FK_FlatInformation_Material1">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FlatInformation" EntitySet="FlatInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatInformation_Material2" Association="Self.FK_FlatInformation_Material2">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FlatInformation" EntitySet="FlatInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_FlatType" Association="Self.FK_Request_FlatType">
+            <End Role="FlatType" EntitySet="FlatType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Request" Association="Self.FK_Image_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageFlat_Image" Association="Self.FK_ImageFlat_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="ImageFlat" EntitySet="ImageFlat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRequest_Request" Association="Self.FK_UserRequest_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="UserRequest" EntitySet="UserRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFlatBase_User" Association="Self.FK_UserFlatBase_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserFlatBase" EntitySet="UserFlatBase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRequest_User" Association="Self.FK_UserRequest_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRequest" EntitySet="UserRequest" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EstateAgencyModelStoreContainer" CdmEntityContainer="EstateAgencyEntities">
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="EstateAgencyModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="House" ColumnName="House" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Authorization">
             <EntityTypeMapping TypeName="EstateAgencyModel.Authorization">
               <MappingFragment StoreEntitySet="Authorization">
@@ -1081,13 +1093,107 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="EstateAgencyModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flat">
+            <EntityTypeMapping TypeName="EstateAgencyModel.Flat">
+              <MappingFragment StoreEntitySet="Flat">
+                <ScalarProperty Name="IdFlat" ColumnName="IdFlat" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="FlatInformation" ColumnName="FlatInformation" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlatBase">
+            <EntityTypeMapping TypeName="EstateAgencyModel.FlatBase">
+              <MappingFragment StoreEntitySet="FlatBase">
+                <ScalarProperty Name="IdFlatBase" ColumnName="IdFlatBase" />
+                <ScalarProperty Name="Flat" ColumnName="Flat" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="DatePublication" ColumnName="DatePublication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlatInformation">
+            <EntityTypeMapping TypeName="EstateAgencyModel.FlatInformation">
+              <MappingFragment StoreEntitySet="FlatInformation">
+                <ScalarProperty Name="IdFlatInformation" ColumnName="IdFlatInformation" />
+                <ScalarProperty Name="FloorSpace" ColumnName="FloorSpace" />
+                <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="CountFloorsInHouse" ColumnName="CountFloorsInHouse" />
+                <ScalarProperty Name="FlatDescription" ColumnName="FlatDescription" />
+                <ScalarProperty Name="WithTechnics" ColumnName="WithTechnics" />
+                <ScalarProperty Name="WithFurniture" ColumnName="WithFurniture" />
+                <ScalarProperty Name="Overlaps" ColumnName="Overlaps" />
+                <ScalarProperty Name="WallMaterial" ColumnName="WallMaterial" />
+                <ScalarProperty Name="Windows" ColumnName="Windows" />
+                <ScalarProperty Name="ChildrenPlayground" ColumnName="ChildrenPlayground" />
+                <ScalarProperty Name="KitchenSet" ColumnName="KitchenSet" />
+                <ScalarProperty Name="Terrace" ColumnName="Terrace" />
+                <ScalarProperty Name="Heating" ColumnName="Heating" />
+                <ScalarProperty Name="KitchenSpace" ColumnName="KitchenSpace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlatType">
+            <EntityTypeMapping TypeName="EstateAgencyModel.FlatType">
+              <MappingFragment StoreEntitySet="FlatType">
+                <ScalarProperty Name="IdFlatType" ColumnName="IdFlatType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Heating">
+            <EntityTypeMapping TypeName="EstateAgencyModel.Heating">
+              <MappingFragment StoreEntitySet="Heating">
+                <ScalarProperty Name="IdHeating" ColumnName="IdHeating" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Image">
+            <EntityTypeMapping TypeName="EstateAgencyModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+                <ScalarProperty Name="Image1" ColumnName="Image" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageFlat">
+            <EntityTypeMapping TypeName="EstateAgencyModel.ImageFlat">
+              <MappingFragment StoreEntitySet="ImageFlat">
+                <ScalarProperty Name="IdImageFlat" ColumnName="IdImageFlat" />
+                <ScalarProperty Name="Flat" ColumnName="Flat" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="EstateAgencyModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Owner">
             <EntityTypeMapping TypeName="EstateAgencyModel.Owner">
               <MappingFragment StoreEntitySet="Owner">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1096,6 +1202,22 @@
               <MappingFragment StoreEntitySet="Region">
                 <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="EstateAgencyModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="FlatType" ColumnName="FlatType" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Space" ColumnName="Space" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1110,150 +1232,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Address">
-            <EntityTypeMapping TypeName="EstateAgencyModel.Address">
-              <MappingFragment StoreEntitySet="Address">
-                <ScalarProperty Name="House" ColumnName="House" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="City">
-            <EntityTypeMapping TypeName="EstateAgencyModel.City">
-              <MappingFragment StoreEntitySet="City">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="EstateAgencyModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FlatBase">
-            <EntityTypeMapping TypeName="EstateAgencyModel.FlatBase">
-              <MappingFragment StoreEntitySet="FlatBase">
-                <ScalarProperty Name="DatePublication" ColumnName="DatePublication" />
-                <ScalarProperty Name="Available" ColumnName="Available" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Flat" ColumnName="Flat" />
-                <ScalarProperty Name="IdFlatBase" ColumnName="IdFlatBase" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FlatType">
-            <EntityTypeMapping TypeName="EstateAgencyModel.FlatType">
-              <MappingFragment StoreEntitySet="FlatType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdFlatType" ColumnName="IdFlatType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Heating">
-            <EntityTypeMapping TypeName="EstateAgencyModel.Heating">
-              <MappingFragment StoreEntitySet="Heating">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdHeating" ColumnName="IdHeating" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Image">
-            <EntityTypeMapping TypeName="EstateAgencyModel.Image">
-              <MappingFragment StoreEntitySet="Image">
-                <ScalarProperty Name="Request" ColumnName="Request" />
-                <ScalarProperty Name="Image1" ColumnName="Image" />
-                <ScalarProperty Name="IdImage" ColumnName="IdImage" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ImageFlat">
-            <EntityTypeMapping TypeName="EstateAgencyModel.ImageFlat">
-              <MappingFragment StoreEntitySet="ImageFlat">
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Flat" ColumnName="Flat" />
-                <ScalarProperty Name="IdImageFlat" ColumnName="IdImageFlat" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Material">
-            <EntityTypeMapping TypeName="EstateAgencyModel.Material">
-              <MappingFragment StoreEntitySet="Material">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Request">
-            <EntityTypeMapping TypeName="EstateAgencyModel.Request">
-              <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Space" ColumnName="Space" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="FlatType" ColumnName="FlatType" />
-                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserFlatBase">
             <EntityTypeMapping TypeName="EstateAgencyModel.UserFlatBase">
               <MappingFragment StoreEntitySet="UserFlatBase">
-                <ScalarProperty Name="FlatBase" ColumnName="FlatBase" />
-                <ScalarProperty Name="User" ColumnName="User" />
                 <ScalarProperty Name="IdUserFlatBase" ColumnName="IdUserFlatBase" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="FlatBase" ColumnName="FlatBase" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRequest">
             <EntityTypeMapping TypeName="EstateAgencyModel.UserRequest">
               <MappingFragment StoreEntitySet="UserRequest">
-                <ScalarProperty Name="Request" ColumnName="Request" />
-                <ScalarProperty Name="User" ColumnName="User" />
                 <ScalarProperty Name="IdUserRequset" ColumnName="IdUserRequset" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Flat">
-            <EntityTypeMapping TypeName="EstateAgencyModel.Flat">
-              <MappingFragment StoreEntitySet="Flat">
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="FlatInformation" ColumnName="FlatInformation" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="IdFlat" ColumnName="IdFlat" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FlatInformation">
-            <EntityTypeMapping TypeName="EstateAgencyModel.FlatInformation">
-              <MappingFragment StoreEntitySet="FlatInformation">
-                <ScalarProperty Name="KitchenSpace" ColumnName="KitchenSpace" />
-                <ScalarProperty Name="Heating" ColumnName="Heating" />
-                <ScalarProperty Name="Terrace" ColumnName="Terrace" />
-                <ScalarProperty Name="KitchenSet" ColumnName="KitchenSet" />
-                <ScalarProperty Name="ChildrenPlayground" ColumnName="ChildrenPlayground" />
-                <ScalarProperty Name="Windows" ColumnName="Windows" />
-                <ScalarProperty Name="WallMaterial" ColumnName="WallMaterial" />
-                <ScalarProperty Name="Overlaps" ColumnName="Overlaps" />
-                <ScalarProperty Name="WithFurniture" ColumnName="WithFurniture" />
-                <ScalarProperty Name="WithTechnics" ColumnName="WithTechnics" />
-                <ScalarProperty Name="FlatDescription" ColumnName="FlatDescription" />
-                <ScalarProperty Name="CountFloorsInHouse" ColumnName="CountFloorsInHouse" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
-                <ScalarProperty Name="FloorSpace" ColumnName="FloorSpace" />
-                <ScalarProperty Name="IdFlatInformation" ColumnName="IdFlatInformation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="EstateAgencyModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

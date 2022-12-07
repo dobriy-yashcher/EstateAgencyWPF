@@ -19,7 +19,7 @@
 
 
         <StackPanel Grid.ColumnSpan="3" Margin="0 0 50 20" VerticalAlignment="Stretch">
-            <Border CornerRadius="15" Background="#FDFDFD" Padding="15" Margin="0 0 0 0">
+            <Border CornerRadius="15" Background="#FDFDFD" Padding="15">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -48,18 +48,6 @@
 
                 </Grid>
             </Border>
-            <!--<TextBlock Text="Логин" Style="{StaticResource infoCardTitle}"/>
-            <TextBox x:Name="tbLogin" />-->
-
-            <!--<TextBlock Text="Пароль" Style="{StaticResource infoCardTitle}"/>
-            <PasswordBox x:Name="tbPassword"/>-->
-
-            <!--<StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Registration" Click="RegistrationButton_Click" Margin="5"/>
-                <Button Content="Authorization" Click="AuthorizationButton_Click" Margin="5"/>
-            </StackPanel>-->
-
-            
         </StackPanel>
     </Grid>
 </Page>

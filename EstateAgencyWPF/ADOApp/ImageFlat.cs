@@ -18,7 +18,7 @@ namespace EstateAgencyWPF.ADOApp
         public int Flat { get; set; }
         public int Image { get; set; }
     
-        public virtual Image Image1 { get; set; }
         public virtual Flat Flat1 { get; set; }
+        public virtual Image Image1 { get; set; }
     }
 }

@@ -34,20 +34,11 @@ namespace EstateAgencyWPF.PagesApp
 
                 if (data != null)
                 {
-                    //if (App.Connection.User.Where(z => z.IdUser == data.User).FirstOrDefault().Role == 1)
-                    //    NavigationService.Navigate(new AdminPage(DataLogin));
-
-                    //else NavigationService.Navigate(new UserPage());
                     NavigationService.Navigate(new AdminPage());
                 }
                 else MessageBox.Show("Неправильный логин или пароль");
             }
             else MessageBox.Show("Заполните поля!");
-        }
-
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new RegistrationPage());
         }
     }
 }

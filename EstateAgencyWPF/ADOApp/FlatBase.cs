@@ -11,7 +11,8 @@ namespace EstateAgencyWPF.ADOApp
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class FlatBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,10 +27,60 @@ namespace EstateAgencyWPF.ADOApp
         public int Type { get; set; }
         public bool Available { get; set; }
         public System.DateTime DatePublication { get; set; }
+
+        public string SellPrice 
+        { 
+            get
+            {
+                var result = (double)Price / 1_000_000;
+                return result.ToString();
+            }
+        }
+
+        public string FloorSpace 
+        { 
+            get
+            {
+                var temp = App.Connection.Flat.Where(z => z.IdFlat == Flat).FirstOrDefault().FlatInformation;
+                var result = App.Connection.FlatInformation.Where(z => z.IdFlatInformation == temp).FirstOrDefault().FloorSpace;
+                return result.ToString();
+            }
+        }
+
+        public string RoomCount 
+        { 
+            get
+            {
+                var temp = App.Connection.Flat.Where(z => z.IdFlat == Flat).FirstOrDefault().FlatInformation;
+                var result = App.Connection.FlatInformation.Where(z => z.IdFlatInformation == temp).FirstOrDefault().RoomCount;
+                return result.ToString();
+            }
+        }
+
+        public string Floor 
+        { 
+            get
+            {
+                var temp = App.Connection.Flat.Where(z => z.IdFlat == Flat).FirstOrDefault().FlatInformation;
+                var result = App.Connection.FlatInformation.Where(z => z.IdFlatInformation == temp).FirstOrDefault();
+                return $"{result.Floor}/{result.CountFloorsInHouse}";
+            }
+        }
+
+        public string Address 
+        {
+            //ул. Карла Маркса, д.47/2
+            get
+            {
+                var temp = App.Connection.Flat.Where(z => z.IdFlat == Flat).FirstOrDefault().Address;
+                var result = App.Connection.Address.Where(z => z.IdAddress == temp).FirstOrDefault();
+                return $"ул. {result.Street}, д.{result.House}";
+            }
+        }
     
+        public virtual Flat Flat1 { get; set; }
         public virtual FlatType FlatType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFlatBase> UserFlatBase { get; set; }
-        public virtual Flat Flat1 { get; set; }
     }
 }

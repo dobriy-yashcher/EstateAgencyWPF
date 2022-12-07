@@ -14,8 +14,6 @@
         Height="730" 
         Width="1280">
     <Grid>
-        <!--<Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>-->
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -89,17 +87,18 @@
                         Click="RequestPage_Clic">
                     <StackPanel>
                         <fa:ImageAwesome Icon="LevelDown" Style="{StaticResource menuButtonIcon}" />
-                        <TextBlock Text="Продать" Style="{StaticResource menuButtonText}" />
+                        <TextBlock Text="Подать" HorizontalAlignment="Center" FontSize="11" Style="{StaticResource menuButtonText}" />
+                        <TextBlock Text="объявление" FontSize="11" Margin="0 -3 0 0" Style="{StaticResource menuButtonText}" />
                     </StackPanel>
                 </Button>
 
-                <Button Style="{StaticResource menuButton}"
+                <!--<Button Style="{StaticResource menuButton}"
                         Click="RequestPage_Clic">
                     <StackPanel>
                         <fa:ImageAwesome Icon="University" Style="{StaticResource menuButtonIcon}" />
                         <TextBlock Text="Сдать" Style="{StaticResource menuButtonText}" />
                     </StackPanel>
-                </Button>
+                </Button>-->
 
                 <Button Style="{StaticResource menuButton}" Click="Authorization_Click">
                     <StackPanel>
